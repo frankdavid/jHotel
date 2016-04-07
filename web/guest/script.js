@@ -118,7 +118,7 @@ app.controller('ProfileCtrl', [
     });
     $scope.loadReservations();
     $scope.cancel = function(reservation){
-      if (confirm('Biztos benne, hogy lemondja a foglalást?')) {
+      if (confirm('Are you sure you want to cancel the reservation?')) {
         Restangular.one('reservations', reservation.id).remove();
         $scope.reservations.splice($scope.reservations.indexOf(reservation), 1);
       }

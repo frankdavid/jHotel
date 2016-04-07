@@ -1,8 +1,8 @@
 <div ng-controller="LoginModalCtrl">
-    <h3>A továbblépéshez be kell jelentkezni!</h3>
+    <h3>Log in to continue</h3>
 
     <div class="well">
-        <div class="alert alert-danger" ng-if="loginError">Hibás bejelentkezési adatok!</div>
+        <div class="alert alert-danger" ng-if="loginError">Invalid login data</div>
         <form ng-submit="login()">
             <div>
                 <label>
@@ -12,12 +12,12 @@
             </div>
             <div>
                 <label>
-                    Jelszó:
+                    Password:
                     <input type="password" class="form-control" ng-model="user.password"/>
                 </label>
             </div>
             <div>
-                <button ng-click="login()" class="btn btn-primary">Bejelentkezés</button>
+                <button ng-click="login()" class="btn btn-primary">Log in</button>
             </div>
         </form>
     </div>

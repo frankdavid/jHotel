@@ -108,7 +108,7 @@ app.controller 'ProfileCtrl', ['$scope', 'Restangular', '$state', '$modal', 'loc
   $scope.loadReservations()
 
   $scope.cancel = (reservation) !->
-    if confirm('Biztos benne, hogy lemondja a foglalást?')
+    if confirm('Are you sure you want to cancel the reservation?')
       Restangular.one('reservations', reservation.id).remove()
       $scope.reservations.splice($scope.reservations.indexOf(reservation), 1)
 

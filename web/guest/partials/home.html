@@ -1,8 +1,8 @@
 <div ng-controller="HomeCtrl">
     <form ng-submit="submit()" id="login-form" name="login" novalidate="novalidate">
         <div ng-if="!signupSuccess">
-            <div class="alert alert-danger" ng-show="incorrectPassword">Hibás jelszó</div>
-            <div class="alert alert-danger" ng-show="submitted && login.$invalid">Kérem, javítsa a hibákat!</div>
+            <div class="alert alert-danger" ng-show="incorrectPassword">Invalid password</div>
+            <div class="alert alert-danger" ng-show="submitted && login.$invalid">Please correct the errors</div>
             <div class="form-group"
                  ng-class="{'has-error': login.email.$invalid, 'has-success': login.email.$dirty && login.email.$valid}">
                 <label>Email</label>
@@ -10,35 +10,35 @@
                 <span class="form-error">{{login.errors.email}}</span>
             </div>
             <div class="form-group">
-                <label>Jelszó</label>
+                <label>Password</label>
                 <input class="form-control" type="password" name="password" ng-model="guest.password"/>
                 <span class="form-error">{{login.errors.password}}</span>
             </div>
             <div id="signup">
                 <div class="form-group">
-                    <label>Név</label>
+                    <label>Name</label>
                     <input class="form-control" type="text" name="name" ng-model="guest.name"/>
                     <span class="form-error">{{login.errors.name}}</span>
                 </div>
                 <div class="form-group">
-                    <label>Telefonszám</label>
+                    <label>Phone number</label>
                     <input class="form-control" type="text" name="phone" ng-model="guest.phone"/>
                     <span class="form-error">{{login.errors.phone}}</span>
                 </div>
                 <div class="form-group">
-                    <label>Jelszó ismételve</label>
+                    <label>Confirm password</label>
                     <input class="form-control" type="password" name="password2" ng-model="guest.password2"/>
                     <span class="form-error">{{login.errors.passwordsMatch}}</span>
                 </div>
             </div>
             <div class="btn-container">
-                <button class="btn btn-lg btn-primary" ng-show="!signup">Belépés / Regisztráció</button>
-                <button class="btn btn-lg btn-primary" ng-show="signup">Regisztráció</button>
+                <button class="btn btn-lg btn-primary" ng-show="!signup">Log in / Register</button>
+                <button class="btn btn-lg btn-primary" ng-show="signup">Register</button>
             </div>
         </div>
         <div ng-if="signupSuccess">
-            <h2>Sikeres regisztráció!</h2>
-            <a class="btn btn-primary" ui-sref="reservations">Tovább a foglaláshoz &gt;&gt;</a>
+            <h2>Successful registration</h2>
+            <a class="btn btn-primary" ui-sref="reservations">Continue to reservations &gt;&gt;</a>
         </div>
     </form>
 </div>

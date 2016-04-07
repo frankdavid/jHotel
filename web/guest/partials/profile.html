@@ -1,48 +1,47 @@
 <div id="my-reservations" class="panel" ng-controller="ProfileCtrl">
-    <h3>Foglalásaim
-    </h3>
+    <h3>My reservations</h3>
     <table class="table">
         <tr>
-            <th width="200">Érkezés</th>
-            <th width="200">Távozás</th>
+            <th width="200">Arrival</th>
+            <th width="200">Departure</th>
             <th width="200" style="text-align: center">
-                <button class="btn btn-primary" ng-click="openNewReservationModal()">Új foglalás</button>
+                <button class="btn btn-primary" ng-click="openNewReservationModal()">New reservation</button>
             </th>
         </tr>
         <tr ng-repeat="reservation in filteredReservations = (reservations | filter: search)">
-            <td>{{ reservation.startDate | date:'yyyy. MMMM. d.' }}</td>
-            <td>{{ reservation.endDate | date:'yyyy. MMMM d.' }}</td>
+            <td>{{ reservation.startDate | date:'MMMM d, yyyy' }}</td>
+            <td>{{ reservation.endDate | date:'MMMM d, yyyy' }}</td>
             <td style="text-align: center">
-                <button class="btn btn-primary" ng-click="viewReservation(reservation)">Megtekintés</button>
-                <button class="btn btn-danger" ng-if="reservation.cancellable" ng-click="cancel(reservation)">Lemondás</button>
+                <button class="btn btn-primary" ng-click="viewReservation(reservation)">View</button>
+                <button class="btn btn-danger" ng-if="reservation.cancellable" ng-click="cancel(reservation)">Cancel</button>
             </td>
         </tr>
     </table>
     <div ng-show="!reservations.length">
-        Nem találhatóak foglalások
+        No reservations found
     </div>
     <hr/>
-    <h3>Adataim</h3>
+    <h3>My Profile</h3>
 
     <div class="well"><form ng-submit="saveUserData()" name="form" class="form-inline">
-        <div class="alert alert-success" ng-if="saveSuccess">Sikeres mentés</div>
+        <div class="alert alert-success" ng-if="saveSuccess">Successfully saved</div>
         <div>
             <label><span>Email:</span></label>
             {{user.email}}
         </div>
         <div>
-            <label><span>Név:</span>
+            <label><span>Name:</span>
                 <input class="form-control" name="name" ng-model="user.name"/>
                 <div class="form-error">{{form.errors.name}}</div>
             </label>
         </div>
         <div>
-            <label><span>Telefonszám:</span>
+            <label><span>Phone number:</span>
                 <input class="form-control" name="phone" ng-model="user.phone"/>
                 <div class="form-error">{{form.errors.phone}}</div>
             </label>
         </div>
-        <button class="btn btn-primary">Mentés</button>
+        <button class="btn btn-primary">Save</button>
     </form></div>
     <small>WebService: http://localhost:8080/hotel/services?wsdl</small>
 </div>

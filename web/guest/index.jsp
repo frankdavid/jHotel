@@ -18,14 +18,14 @@
     <div class="wrapper">
         <h1>jHotel</h1>
 
-        <h2>Ahol az álmok valóra válnak</h2>
+        <h2>Where dreams come true</h2>
     </div>
 </header>
 <div ui-view class="wrapper"></div>
 
 <footer>
     <div class="wrapper">
-        &copy;jHotel, Szoftverfejlesztés J2EE alapon házi feladat
+        &copy;jHotel, J2EE Development assignment
     </div>
 </footer>
 
@@ -35,7 +35,7 @@
 <script src="public/script/bower_components/restangular/src/restangular.js"></script>
 <script src="public/script/bower_components/angular-animate/angular-animate.min.js"></script>
 <script src="public/script/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-<script src="public/script/bower_components/angular-bootstrap/locale_hu.js"></script>
+<script src="public/script/bower_components/angular-bootstrap/locale_en.js"></script>
 <script src="public/script/bower_components/angular-local-storage/angular-local-storage.min.js"></script>
 <script src="public/script/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="public/script/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>

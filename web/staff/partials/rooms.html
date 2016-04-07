@@ -3,23 +3,23 @@
     <form ng-submit="save()">
         <table class="table table-hover">
             <tr>
-                <th width="15%">Szobaszám</th>
-                <th width="15%">Ágyak száma</th>
-                <th width="10%">Dohányzó</th>
-                <th width="15%">Tengerre néző</th>
-                <th width="20%">Ár/éjszaka</th>
+                <th width="15%">Room number</th>
+                <th width="15%">Number of beds</th>
+                <th width="10%">Smoking</th>
+                <th width="15%">Sea view</th>
+                <th width="20%">Price/night</th>
                 <th width="25%" style="text-align: center">
-                    <button class="btn btn-primary" ng-click="new()" ng-if="!editedRoom">Új szoba</button>
+                    <button class="btn btn-primary" ng-click="new()" ng-if="!editedRoom">New room</button>
                 </th>
             </tr>
             <tr ng-repeat="room in rooms" height="60">
                 <td ng-if="!editedRoom || editedRoom.id != room.id">{{room.number}}</td>
                 <td ng-if="!editedRoom || editedRoom.id != room.id">{{room.numberOfBeds}}</td>
-                <td ng-if="!editedRoom || editedRoom.id != room.id">{{room.smoking ? 'igen' : 'nem'}}</td>
-                <td ng-if="!editedRoom || editedRoom.id != room.id">{{room.seaView ? 'igen' : 'nem'}}</td>
-                <td ng-if="!editedRoom || editedRoom.id != room.id">{{room.pricePerNight}} Ft</td>
+                <td ng-if="!editedRoom || editedRoom.id != room.id">{{room.smoking ? 'yes' : 'no'}}</td>
+                <td ng-if="!editedRoom || editedRoom.id != room.id">{{room.seaView ? 'yes' : 'no'}}</td>
+                <td ng-if="!editedRoom || editedRoom.id != room.id">{{room.pricePerNight}} CHF</td>
                 <td ng-if="!editedRoom || editedRoom.id != room.id" style="text-align: center">
-                    <button ng-if="!editedRoom" class="btn btn-primary" ng-click="edit(room)">Szerkesztés</button>
+                    <button ng-if="!editedRoom" class="btn btn-primary" ng-click="edit(room)">Edit</button>
                 </td>
 
                 <td ng-if="editedRoom && editedRoom.id == room.id"><input ng-model="editedRoom.number" class="form-control"/></td>
@@ -28,15 +28,16 @@
                 </td>
                 <td ng-if="editedRoom && editedRoom.id == room.id"><input ng-model="editedRoom.smoking" type="checkbox"/></td>
                 <td ng-if="editedRoom && editedRoom.id == room.id"><input ng-model="editedRoom.seaView" type="checkbox"/></td>
-                <td ng-if="editedRoom && editedRoom.id == room.id" class="form-inline"><input ng-model="editedRoom.pricePerNight" size="10" class="form-control"/> Ft</td>
+                <td ng-if="editedRoom && editedRoom.id == room.id" class="form-inline">
+                    <input ng-model="editedRoom.pricePerNight" size="10" class="form-control"/> CHF</td>
                 <td ng-if="editedRoom && editedRoom.id == room.id">
-                    <button class="btn btn-primary">Mentés</button>
-                    <button class="btn btn-default" ng-click="cancel()">Mégse</button>
+                    <button class="btn btn-primary">Save</button>
+                    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
                 </td>
 
             </tr>
             <tr ng-show="!rooms.length">
-                <td colspan="6" align="center">Nem található eredmény</td>
+                <td colspan="6" align="center">No results</td>
             </tr>
         </table>
     </form>

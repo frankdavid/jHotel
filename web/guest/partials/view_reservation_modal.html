@@ -1,45 +1,45 @@
 <div>
-    <h3>Foglalás megtekintése</h3>
+    <h3>View reservation</h3>
     <table class="table table-hover">
         <tr>
-            <th>Érkezés:</th>
-            <td>{{ reservation.startDate | date:'yyyy. MMMM. d.' }}</td>
+            <th>Arrival:</th>
+            <td>{{ reservation.startDate | date:'MMMM d, yyyy' }}</td>
         </tr>
         <tr>
-            <th>Távozás:</th>
-            <td>{{ reservation.endDate | date:'yyyy. MMMM. d.' }}</td>
+            <th>Departure:</th>
+            <td>{{ reservation.endDate | date:'MMMM d, yyyy' }}</td>
         </tr>
         <tr>
-            <th>Ágyak száma:</th>
+            <th>Number of beds:</th>
             <td>{{reservation.room.numberOfBeds}}</td>
         </tr>
         <tr>
-            <th>Szobaszám:</th>
+            <th>Room number:</th>
             <td>{{reservation.room.number}}</td>
         </tr>
         <tr>
-            <th>Szoba típusa:</th>
-            <td>{{reservation.room.smoking?'Dohányzó': 'Nemdohányzó'}}, {{reservation.room.seaView?'Tengerre
-                néző':'Nem tengerre néző'}}
+            <th>Type of room:</th>
+            <td>{{reservation.room.smoking?'Smoking': 'Non-smoking'}}
+                {{reservation.room.seaView?'with sea-view':'without sea-view'}}
             </td>
         </tr>
     </table>
 
     <h4 ng-if="!purchases.length">
-        Nem találhatók vásárlások
+        No purchases found
     </h4>
     <div ng-if="purchases.length">
-        <h4>Vásárlások</h4>
+        <h4>Purchases</h4>
         <table class="table table-hover">
             <tr>
-                <th>Ár</th>
-                <th>Leírás</th>
-                <th>Dátum</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Date</th>
             </tr>
             <tr ng-repeat="purchase in purchases">
                 <td>{{purchase.amount | number}} Ft</td>
                 <td>{{purchase.description}}</td>
-                <td>{{purchase.createdAt | date:'yyyy. MMMM. d.'}}</td>
+                <td>{{purchase.createdAt | date:'MMMM d, yyyy'}}</td>
             </tr>
         </table>
     </div>

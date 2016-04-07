@@ -7,7 +7,7 @@
     reservation.checkInAvailable = false
     reservation.checkedIn = true
   $scope.checkOut = (reservation) !->
-    if confirm "#{reservation.fullPrice} Ft a fizetendő"
+    if confirm "Total price: #{reservation.fullPrice} CHF"
       Restangular.one('reservations', reservation.id).post('checkOut')
       reservation.checkOutAvailable = false
       reservation.checkedOut = true

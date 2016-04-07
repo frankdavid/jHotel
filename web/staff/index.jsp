@@ -27,9 +27,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li ui-sref-active="active"><a ui-sref="reservations">Foglalások</a></li>
-                    <li ui-sref-active="active"><a ui-sref="purchase">Terhelés szobára</a></li>
-                    <li ui-sref-active="active"><a ui-sref="rooms">Szobák</a></li>
+                    <li ui-sref-active="active"><a ui-sref="reservations">Reservations</a></li>
+                    <li ui-sref-active="active"><a ui-sref="purchase">Charge room</a></li>
+                    <li ui-sref-active="active"><a ui-sref="rooms">Rooms</a></li>
                 </ul>
 
 
@@ -45,7 +45,7 @@
 <script src="public/script/bower_components/lodash/dist/lodash.min.js"></script>
 <script src="public/script/bower_components/angular/angular.min.js"></script>
 <script src="public/script/bower_components/restangular/dist/restangular.min.js"></script>
-<script src="public/script/bower_components/angular-bootstrap/locale_hu.js"></script>
+<script src="public/script/bower_components/angular-bootstrap/locale_en.js"></script>
 <script src="public/script/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 <script src="public/script/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="public/script/bower_components/angular-local-storage/angular-local-storage.min.js"></script>
