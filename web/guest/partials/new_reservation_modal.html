@@ -1,0 +1,109 @@
+<div ng-controller="NewReservationCtrl" id="new-reservation">
+    <div ng-show="!isConfirm()">
+        <h3>Új foglalás</h3>
+
+        <form class="clearfix" ng-submit="findRooms()">
+            <div class="form-group clearfix">
+                <div class="pull-left">
+                    <label>Érkezés:</label>
+                    <datepicker ng-model="reservation.startDate" show-weeks="false" starting-day="1" min="minStartDate"
+                                day-title-format="'yyyy. MMMM'"/>
+                </div>
+                <div class="pull-right">
+                    <label>Távozás:</label>
+                    <datepicker ng-model="reservation.endDate" show-weeks="false" starting-day="1" min="minEndDate"
+                                day-title-format="'yyyy. MMMM'"/>
+                </div>
+            </div>
+            <div class="options">
+                <div class="form-group form-inline">
+                    <label class="pull-left">Ágyak száma:
+                        <input type="number" min="1" ng-model="reservation.numberOfBeds" size="3" class="form-control"/>
+                    </label>&nbsp;&nbsp;
+                    <div class="pull-right"><button type="button" class="btn btn-default" ng-model="reservation.seaView" btn-checkbox>
+                        Tengerre néző szoba
+                    </button>
+                    &nbsp;&nbsp;
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" ng-model="reservation.smoking" btn-radio="false">
+                            Nemdohányzó szoba
+                        </button>
+                        <button type="button" class="btn btn-default" ng-model="reservation.smoking" btn-radio="true">
+                            Dohányzó szoba
+                        </button>
+                    </div></div>
+                </div>
+            </div>
+        </form>
+        <div class="searchResults" ng-show="searchSubmitted">
+            <div ng-if="searchResults.length">
+                <h4>A következő szobákat találtam:</h4>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Ár</th>
+                        <th>Ágyak száma</th>
+                        <th>Dohányzás</th>
+                        <th>Tengerre néző</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <tr ng-repeat="room in searchResults">
+                        <td>{{room.pricePerNight | number}} Ft/éj, összesen {{room.wholePrice | number}} Ft</td>
+                        <td>{{room.numberOfBeds}}</td>
+                        <td>{{room.smoking ? 'Dohányzó szoba' : 'Nemdohányzó szoba'}}</td>
+                        <td>{{room.seaView ? 'Tengerre néző': 'Nem tengerre néző'}}</td>
+                        <td>
+                            <button class="btn btn-primary" ng-click="showConfirm(room)">Foglalás</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div ng-if="!searchResults.length">
+                <h4>Sajnos nem találtam elérhető szobákat</h4>
+            </div>
+        </div>
+    </div>
+    <div ng-if="isConfirm()" id="confirm-reservation" class="clearfix">
+        <h3>Foglalás megerősítése</h3>
+
+        <div class="well">
+            <table>
+                <tr>
+                    <td align="right">Érkezés:</td>
+                    <td>{{reservation.startDate | date:'yyyy. MMMM d.' }}</td>
+                </tr>
+                <tr>
+                    <td align="right">Távozás:</td>
+                    <td>{{reservation.endDate | date:'yyyy. MMMM d.' }}</td>
+                </tr>
+                <tr>
+                    <td align="right">Szoba típusa:</td>
+                    <td>{{reservation.room.smoking?'Dohányzó': 'Nemdohányzó'}}, {{reservation.room.seaView?'Tengerre
+                        néző':'Nem tengerre néző'}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Ágyak száma:</td>
+                    <td>{{reservation.room.numberOfBeds}}</td>
+                </tr>
+                <tr>
+                    <td align="right">Ár:</td>
+                    <td>{{reservation.room.pricePerNight | number}} Ft/éj, összesen {{reservation.room.wholePrice |
+                        number}} Ft
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div ng-if="confirmSuccess">
+            <div class="alert alert-success">Gratulálunk, a foglalás sikeres volt!</div>
+            <button class="btn btn-default" ng-click="closeModal()">Bezárás</button>
+        </div>
+        <div ng-if="confirmFail">
+            <div class="alert alert-danger">Hiba történt a foglalás során, a választott szoba már nem elérhető, kérem próbálkozzon újra!</div>
+        </div>
+        <div ng-if="!confirmSuccess">
+            <button class="btn btn-default" ng-click="hideConfirm()">Vissza</button>
+            <button ng-if="!confirmFail" class="btn btn-primary pull-right" ng-click="doConfirm()">Megerősítés</button>
+        </div>
+    </div>
+
+</div>

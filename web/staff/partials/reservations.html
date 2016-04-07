@@ -1,0 +1,37 @@
+<div id="reservations" ng-controller="ReservationCtrl">
+
+    <table class="table table-hover">
+        <tr>
+            <th width="20%">Név</th>
+            <th width="5%">Szoba</th>
+            <th width="15%">Érekezés</th>
+            <th width="15%">Távozás</th>
+            <th class="form-inline">
+                <input placeholder="Név" type="text" class="form-control" ng-model="search.guest.name"/> &nbsp;&nbsp;
+                <select ng-model="searchCheck" class="form-control">
+                    <option value="both">Szűrés</option>
+                    <option value="in">Csak check-in</option>
+                    <option value="out">Csak check-out</option>
+                </select>
+            </th>
+        </tr>
+        <tr ng-repeat="reservation in filteredReservations = (reservations | filter: search)">
+            <td>{{reservation.guest.name}}</td>
+            <td>{{reservation.room.number}}</td>
+            <td>{{reservation.startDate | date:'yyyy. MMMM d.'}}</td>
+            <td>{{reservation.endDate | date:'yyyy. MMMM d.'}}</td>
+            <td>
+                <button ng-if="reservation.checkInAvailable" class="btn btn-info" ng-click="checkIn(reservation)">Check-in</button>
+                <small ng-if="reservation.checkedIn">Check-in <i class="glyphicon glyphicon-ok"></i> &nbsp; </small>
+                <button ng-if="reservation.checkOutAvailable" class="btn btn-info" ng-click="checkOut(reservation)">Check-out</button>
+                <small ng-if="reservation.checkedOut">Check-out <i class="glyphicon glyphicon-ok"></i> &nbsp; </small>
+                <span ng-if="reservation.checkedIn && !reservation.checkedOut">
+                    <a class="btn btn-default" ui-sref="purchase({roomNumber: reservation.room.number})">Terhelés</a>
+                </span>
+            </td>
+        </tr>
+        <tr ng-show="!filteredReservations.length">
+            <td colspan="5" align="center">Nem található eredmény</td>
+        </tr>
+    </table>
+</div>

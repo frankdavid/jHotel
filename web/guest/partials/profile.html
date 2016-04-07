@@ -1,0 +1,48 @@
+<div id="my-reservations" class="panel" ng-controller="ProfileCtrl">
+    <h3>Foglalásaim
+    </h3>
+    <table class="table">
+        <tr>
+            <th width="200">Érkezés</th>
+            <th width="200">Távozás</th>
+            <th width="200" style="text-align: center">
+                <button class="btn btn-primary" ng-click="openNewReservationModal()">Új foglalás</button>
+            </th>
+        </tr>
+        <tr ng-repeat="reservation in filteredReservations = (reservations | filter: search)">
+            <td>{{ reservation.startDate | date:'yyyy. MMMM. d.' }}</td>
+            <td>{{ reservation.endDate | date:'yyyy. MMMM d.' }}</td>
+            <td style="text-align: center">
+                <button class="btn btn-primary" ng-click="viewReservation(reservation)">Megtekintés</button>
+                <button class="btn btn-danger" ng-if="reservation.cancellable" ng-click="cancel(reservation)">Lemondás</button>
+            </td>
+        </tr>
+    </table>
+    <div ng-show="!reservations.length">
+        Nem találhatóak foglalások
+    </div>
+    <hr/>
+    <h3>Adataim</h3>
+
+    <div class="well"><form ng-submit="saveUserData()" name="form" class="form-inline">
+        <div class="alert alert-success" ng-if="saveSuccess">Sikeres mentés</div>
+        <div>
+            <label><span>Email:</span></label>
+            {{user.email}}
+        </div>
+        <div>
+            <label><span>Név:</span>
+                <input class="form-control" name="name" ng-model="user.name"/>
+                <div class="form-error">{{form.errors.name}}</div>
+            </label>
+        </div>
+        <div>
+            <label><span>Telefonszám:</span>
+                <input class="form-control" name="phone" ng-model="user.phone"/>
+                <div class="form-error">{{form.errors.phone}}</div>
+            </label>
+        </div>
+        <button class="btn btn-primary">Mentés</button>
+    </form></div>
+    <small>WebService: http://localhost:8080/hotel/services?wsdl</small>
+</div>

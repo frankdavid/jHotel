@@ -1,0 +1,24 @@
+<div ng-controller="LoginModalCtrl">
+    <h3>A továbblépéshez be kell jelentkezni!</h3>
+
+    <div class="well">
+        <div class="alert alert-danger" ng-if="loginError">Hibás bejelentkezési adatok!</div>
+        <form ng-submit="login()">
+            <div>
+                <label>
+                    Email:
+                    <input type="text" class="form-control" ng-model="user.email">
+                </label>
+            </div>
+            <div>
+                <label>
+                    Jelszó:
+                    <input type="password" class="form-control" ng-model="user.password"/>
+                </label>
+            </div>
+            <div>
+                <button ng-click="login()" class="btn btn-primary">Bejelentkezés</button>
+            </div>
+        </form>
+    </div>
+</div>

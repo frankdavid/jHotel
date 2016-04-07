@@ -1,0 +1,88 @@
+html {
+  height: 100%;
+}
+body {
+  background: url(images/hotel_room.jpg);
+  background-size: 100%;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: lighter;
+  margin: 10px;
+}
+header h1,
+header h2 {
+  font-weight: lighter;
+  color: #ffffff;
+  text-shadow: 1px 1px 23px #333333;
+}
+header h1 {
+  font-size: 50px;
+  margin-top: 70px;
+}
+header h2 {
+  font-size: 20px;
+  margin-top: -3px;
+}
+.form-error {
+  color: #cc0000;
+}
+#login-form {
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  float: right;
+  width: 400px;
+  color: white;
+}
+#login-form .btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+#login-form #signup {
+  display: none;
+}
+.wrapper {
+  width: 940px;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 100%;
+}
+.panel {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px 20px;
+}
+footer {
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  display: none;
+}
+#my-reservations {
+  min-height: 50%;
+}
+#my-reservations label span {
+  width: 100px;
+  display: inline-block;
+}
+#new-reservation {
+  padding: 20px;
+}
+#new-reservation table td {
+  vertical-align: middle;
+}
+#new-reservation .options {
+  text-align: center;
+}
+#new-reservation input[type=number] {
+  width: 50px;
+}
+#confirm-reservation table td {
+  padding: 3px 10px;
+  font-weight: bold;
+}
+.modal-dialog {
+  width: 700px;
+}

@@ -1,0 +1,30 @@
+<div id="purchase" ng-controller="PurchaseCtrl">
+    <h3>Terhelés szobára</h3>
+    <div class="well">
+        <form class="form" name="purchaseForm">
+            <div class="alert alert-success clearfix" ng-if="success">
+                Sikeres tranzakció! &nbsp; &nbsp;
+                <button class="btn btn-success pull-right" ng-click="reset()" type="button">Új terhelés</button>
+            </div>
+            <div class="form-group form-inline"
+                 ng-class="{'has-error': purchaseForm.amount.$invalid && purchaseForm.amount.$dirty}">
+                <label><span>Összeg:</span>
+                    <input autofocus type="number" ng-disabled="purchaseSubmitted" required size="5" name="amount" class="form-control" ng-model="purchase.amount"/>
+                    Ft</label>
+            </div>
+            <div class="form-group form-inline"
+                 ng-class="{'has-error': purchaseForm.roomNumber.$invalid && purchaseForm.roomNumber.$dirty}">
+                <label><span>Szobaszám:</span> <input ng-disabled="purchaseSubmitted" size="5" class="form-control" name="roomNumber"
+                                                      ng-model="purchase.roomNumber" required/></label>
+                &nbsp; <span ng-show="guest">Név: {{guest.name}}</span>
+                <span ng-show="purchaseForm.roomNumber.$error.correct">Hibás szobaszám</span>
+            </div>
+            <div class="form-group ">
+                <label>Leírás:
+                    <textarea ng-disabled="purchaseSubmitted" cols="50" rows="7" class="form-control" ng-model="purchase.description"></textarea>
+                </label>
+            </div>
+            <button class="btn btn-primary submit" ng-if="!purchaseSubmitted" ng-disabled="purchaseForm.$invalid" ng-click="submitPurchase()">Számlázás</button>
+        </form>
+    </div>
+</div>
