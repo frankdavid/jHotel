@@ -63,8 +63,7 @@ public class ReservationService extends BaseService {
         return findPurchasesForReservationWithAuthorization(reservationId, loggedInUser.get());
     }
 
-    public List<Purchase> findPurchasesForReservationWithAuthorization(@PathParam("reservationId") Long reservationId,
-                                                                       User user) {
+    public List<Purchase> findPurchasesForReservationWithAuthorization(Long reservationId, User user) {
         Reservation reservation = find(Reservation.class, reservationId);
         if(reservation == null)
             return null;

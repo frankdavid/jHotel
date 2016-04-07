@@ -64,16 +64,24 @@ public class RoomService extends BaseService {
 
         QReservation reservation = QReservation.reservation;
         QRoom room = QRoom.room;
-        BooleanExpression roomPredicate = new JPASubQuery().from(reservation).where(reservation.room.eq(room).and(
-                reservation.startDate.between(dayAfterStartDate, endDate).or(reservation.endDate.between(dayAfterStartDate, endDate))
-        )).notExists().and(room.smoking.eq(form.isSmoking())).and(room.numberOfBeds.goe(form.getNumberOfBeds()));
+        BooleanExpression roomPredicate = new JPASubQuery()
+                .from(reservation)
+                .where(
+                        reservation.room.eq(room).and(
+                                reservation.startDate.between(dayAfterStartDate, endDate)
+                                        .or(reservation.endDate.between(dayAfterStartDate, endDate))
+                        )).notExists()
+                .and(room.smoking.eq(form.isSmoking()))
+                .and(room.numberOfBeds.goe(form.getNumberOfBeds()));
         if (form.isSeaView())
             roomPredicate = roomPredicate.and(room.seaView.isTrue());
         if(form.getPricePerNight() != null)
             roomPredicate = roomPredicate.and(room.pricePerNight.eq(form.getPricePerNight()));
         List<Tuple> results = query(room).where(roomPredicate)
-                .groupBy(room.pricePerNight, room.seaView, room.smoking, room.numberOfBeds).orderBy(room.pricePerNight.asc())
-                .list(room.pricePerNight, room.seaView, room.smoking, room.number.min(), room.id.min(), room.numberOfBeds);
+                .groupBy(room.pricePerNight, room.seaView, room.smoking, room.numberOfBeds)
+                .orderBy(room.pricePerNight.asc())
+                .list(room.pricePerNight, room.seaView, room.smoking, room.number.min(), room.id.min(),
+                        room.numberOfBeds);
 
         long nights = new Duration(new DateTime(startDate), new DateTime(endDate)).getStandardDays();
         List<RoomSpecification> rooms = new ArrayList<>();
@@ -103,7 +111,9 @@ public class RoomService extends BaseService {
     @RolesAllowed(Role.RECEPTION)
     public Reservation getCurrentReservation(Room room) {
         return query(QReservation.reservation)
-                .where(QReservation.reservation.room.eq(room).and(QReservation.reservation.checkedIn).and(QReservation.reservation.checkedOut.not()))
+                .where(QReservation.reservation.room.eq(room)
+                        .and(QReservation.reservation.checkedIn)
+                        .and(QReservation.reservation.checkedOut.not()))
                 .singleResult(QReservation.reservation);
     }
 
