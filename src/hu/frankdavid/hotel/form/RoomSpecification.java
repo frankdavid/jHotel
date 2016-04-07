@@ -10,7 +10,7 @@ import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RoomSpecification {
-    @Future
+
     private Date startDate;
 
     @Future
@@ -33,6 +33,16 @@ public class RoomSpecification {
     @XmlTransient
     public boolean isEndDateIsAfterStartDate() {
         return endDate.after(startDate);
+    }
+
+    @AssertTrue
+    @XmlTransient
+    public boolean isStartDateAfterToday() {
+        Date today = new Date();
+        today.setHours(0);
+        today.setMinutes(0);
+        today.setSeconds(0);
+        return startDate.after(today);
     }
 
     public Date getStartDate() {
