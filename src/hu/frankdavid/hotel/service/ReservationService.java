@@ -23,6 +23,7 @@ public class ReservationService extends BaseService {
         QReservation reservation = QReservation.reservation;
         return query(reservation)
                 .where(reservation.room.number.eq(roomNumber).and(reservation.checkedIn.isTrue()).and(reservation.checkedOut.isFalse()))
+                .orderBy(reservation.startDate.desc())
                 .singleResult(reservation);
     }
 
